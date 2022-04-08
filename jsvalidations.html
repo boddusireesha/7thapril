@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Html forms</title>
+    <style>
+     /*  .about * {
+        vertical-align: middle;
+      } */
+      #demo{
+        margin: 40%;
+        border: 2px solid gray;
+         padding: 10px; 
+        border-radius: 8px;
+      }
+      form{
+        background-color: rgb(246, 173, 70);
+      }
+      .errortext{
+        color:red;
+      }
+    </style>
+    <script>
+      function validateregform(){
+        var fname = document.getElementById("firstname").value;
+        /* var emails = document.getElementById('emails').value; */ 
+        var rank1 = document.getElementById("rank").value;
+
+
+          if(fname!= ""  && fname.length >=6 ){
+          document.getElementById("fnameerror").style.display="none";
+        }else{
+          document.getElementById("fnameerror").style.display="block";
+        }
+
+
+        
+        if(emails == ""){
+                   document.getElementById('emailids').innerHTML=" **please fill email";
+                   return false;
+              }
+              if(emails.indexOf('@') <=0){
+                document.getElementById('emailids').innerHTML=" **@ invalid position";
+                   return false;
+              }
+               if((emails.charAt(emails.length-4)!='.') && (emails.charAt(emails.length-3)!='.')){
+                document.getElementById('emailids').innerHTML=" **@. Invalid position";
+                   return false;
+              } else{
+                document.getElementById('emailids').innerHTML="";
+               } 
+
+                if(rank1!=" " && !isNaN(rank1) && rank1 < 10 ){
+          document.getElementById("rankerror").style.display="none";
+        }else{
+          document.getElementById("rankerror").style.display="block";
+        } 
+      } 
+    </script>
+  </head>
+  <center>
+    <body>
+     <div id="demo">
+      <form  name="registration" method="post">
+        <label>First Name:</label><br />
+        <input
+          type="text"
+          id="firstname"
+          name="firstname"
+          oninput="validateregform()"><br />
+          <span id="fnameerror" class="errortext">Please enter First Name<br>
+         Fname should be min 6 Characters</span><br><br>
+
+        <label>Phone Number:</label><br>
+        <input type="number" id="rank" name="rank" oninput="validateregform()"><br>
+        <span id="rankerror" class="errortext">** Enter digits only<br>
+        <!-- **length should be 10 --></span><br><br>
+
+        <!--Email-->
+        <label for="email">Email</label><br>
+        <input type="email" id="email" name="email" /><br /><br />
+        
+        <span id="emailids" class="text-danger" font-weight-bold></span>
+        <!--in this placeholder can be used to give a help to the user it can be disappeard after entering the details-->
+        <label for="pwd">Password:</label><br />
+        <input
+          type="password"
+          id="pwd"
+          name="pwd"
+          placeholder="Enter password"
+        /><br /><br />
+        
+        <input type="submit" value="submit" style="background-color:rgb(118, 225, 193);">
+        </form>
+      </div>
+    </body>
+  </center>
+</html>
